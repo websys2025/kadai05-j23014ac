@@ -11,13 +11,16 @@
     </p></form>
     
     <div id="result"></div>
+    <div id="gazou"></div>
     <script>
         async function some_api(myForm) {
             // ここにコードを書く
             const url = "https://robohash.org/${"+myForm.form_data.value+"}";
             document.getElementById("result").innerHTML += url +"<br />";
+            document.getElementById("result").innerHTML += "<img src=\""+url+"\" alt=\"ロボットの画像\"><br>";
             document.apiform.reset();
-            location.href = url;
+
+            //location.href = url;
         }
     </script>
 </body>
