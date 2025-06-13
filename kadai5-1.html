@@ -1,6 +1,6 @@
 <html lang="ja">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>演習課題5-1：郵便番号APIの呼び出しテスト</title>
 </head>
 <body>
@@ -15,8 +15,13 @@
         async function zip_api(myForm) {
             const endpoint = "https://zipcloud.ibsnet.co.jp/api/search";
             // ここにコードを書く
+            const f = await fetch("https://zipcloud.ibsnet.co.jp/api/search?zipcode=" +myForm.zipcode.value); 
+            const data = await f.json();
+            const zyusho = data.results ? data.results[0] : null;
+            const address = `${zyusho.address1} ${zyusho.address2} ${zyusho.address3}`;
+
             // zipcloudのAPI呼び出して結果を表示する
-            document.getElementById("result").innerHTML =  myForm.zipcode.value; // 現状ではそのまま表示しているだけ
+            document.getElementById("result").innerHTML =  address; // 現状ではそのまま表示しているだけ
         }
     </script>
 </body>
